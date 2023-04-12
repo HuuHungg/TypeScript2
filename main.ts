@@ -1,23 +1,12 @@
-const arr = [1,2,3,4,5,6,7,8,9,10]
-for (let i = 0; i < arr.length; i++) {
-    if(arr[i] % 2 !== 0) {
-        continue
-    }
-    console.log(arr[i])
+function sum(a: any,b: any) {
+    return a + b;
 }
 
-const arr2 = [16, null, 22, undefined, 33, "string"];
-for(let i = 0; i < arr2.length; i++) {
-    if(arr2[i] === null || arr2[i] === undefined) {
-        continue
-    }
-    console.log(arr2[i])
-}
+console.log(">>> check sum: ", sum(8,9))
 
-const arr3 = [11, "two", 333, "for", 33333444];
-for(let i = 0; i < arr3.length; i++) {
-    if(typeof arr3[i] !== "number") {
-        continue
-    }
-    console.log(arr3[i])
+
+// anonimus function 
+let sum2 = (a:number, b: number) =>  {
+    return a + b    
 }
+console.log(">>> check sum: ", sum2(2,3) )
