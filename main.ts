@@ -1,22 +1,16 @@
-class Person {
-    ssn : string;
-    firstName: string;
-    lastName: string;
-
-    constructor(ssn: string , firstName: string, lastName: string ) {
-        this.ssn = ssn
-        this.firstName = firstName
-        this.lastName = lastName
+class Employe {
+    public empCode : string
+    empName : string
+    
+    constructor(empCode: string, empName: string) {
+        this.empCode = empCode
+        this.empName = empName
     }
 
-    getFullName(): string {
-        return `calling method: ${this.firstName} ${this.lastName}` ;
-    }
-}   
+}
 
-let fullCourse = new Person("毎日","日本語を勉強してる", "頑張ってください")
+let emp = new Employe ("aaa", "bbb")
+emp.empCode = "毎日ITを勉強してる頑張りましょう"
+emp.empName = "頑張ってください"
 
-console.log(fullCourse)
-console.log(fullCourse.getFullName())
-
-
+console.log(emp)
