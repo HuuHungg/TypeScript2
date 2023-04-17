@@ -1,97 +1,66 @@
-// Getter là phương thức trả về giá trị 
-// Setter là một phương thức được sử dụng để gán giá trị cho thuộc tính
+class Person3 {
+    firstName: string;
+    lastName: string;
 
-class Person {
-    private _age: number = 0;
-  
-    get age(): number {
-      return this._age;
-    }
-  
-    set age(value: number) {
-      if (value >= 0 && value <= 120) {
-        this._age = value;
-      }
-    }
-  }
-  
-  const person = new Person();
-  person.age = 30; // Gọi phương thức set age, giá trị của age bây giờ là 30
-  console.log(person.age); // Gọi phương thức get age, hiển thị giá trị 30
-  person.age = 150; // Gọi phương thức set age, giá trị của age không thay đổi vì không thỏa mãn điều kiện if
-  console.log(person.age); // Gọi phương thức get age, hiển thị giá trị 30 vì giá trị của age vẫn không thay đổi
-
-  console.log("=============")
-//------------------------------------------------------
-
-class Person2 {
-    private _age: number
-    public firstName: string
-    public lastName: string
-
-    constructor (_age: number, firstName: string, lastName: string) {
-        this._age = _age
-        this.firstName = firstName
-        this.lastName = lastName
+    constructor (firstName: string, lastName: string) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    get age() {
-        return this._age;
+    getFullName(): string {
+        return `${this.firstName} ${this.lastName}`
     }
-
-    set age(age2: number) {
-        if(age2 < 0 || age2 > 100) {
-            throw Error("Invalid get")
-        }
-        this._age = age2
-    }
-}   
-
-let person2 = new Person2(40, "Yushing", "Guen")
-person2.age = 70
-
-console.log("check age", person2)
-
-console.log("======")
-
-//// VD3
-class Person4 {
-    private _name: string;
-    private _age: number;
-
-    constructor(name: string, age: number) {
-        this._name = name
-        this._age = age
-    }
-
-    get name(): string {
-        return this._name
-    }
-
-    set name(newName: string) {
-        this._name = newName
-    }
-
-    get age(): number {
-        return this._age;
-    }
-
-    set age(newAge: number) {
-        if(newAge < 0) {
-            throw new Error ("Age cannot be negative")
-        }
-        this._age = newAge;
+    // overwrite
+    describe(): string {
+        return `This is ${this.firstName} ${this.lastName}`
     }
 }
 
-const person4 = new Person4("John4", 50)
-console.log(person4.name)
-console.log(person4.age)
+// để kế thừa 1 class, chúng ta sử dụng keyword extends
 
-person4.name = "Yushing"
-person4.age = 21
+class Employee1 extends Person3 {
+    constructor (
+        firstName: string,
+        lastName: string) {
+            super(firstName, lastName);
+        }
 
-console.log(person4.name)
-console.log(person4.age)
+    describe(): string {
+        return ` ${super.describe()} from Parent - I am learning English with my Friend `
+    }
+}
 
-// person4.age = -10 Throws an error: "Age cannot be negative"
+let employee = new Employee1("毎日ITを勉強して", "2時間ぐらい")
+
+console.log(employee.getFullName())
+console.log(employee.describe())
+
+
+
+class Animal {
+    name: string;
+  
+    constructor(name: string) {
+      this.name = name;
+    }
+  
+    move(distanceInMeters: number = 0) {
+      console.log(`${this.name} moved ${distanceInMeters}m.`);
+    }
+  }
+  
+  class Snake extends Animal {
+    constructor(name: string) {
+      super(name);
+    }
+  
+    move(distanceInMeters = 5) {
+      console.log("Slithering...");
+      super.move(distanceInMeters);
+    }
+  }
+  
+  let sam = new Snake("Sammy the Python");
+  sam.move();
+  
+  console.log(sam)
