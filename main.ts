@@ -1,66 +1,39 @@
-class Person3 {
-    firstName: string;
-    lastName: string;
-
-    constructor (firstName: string, lastName: string) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    getFullName(): string {
+abstract class Employee99 {
+    constructor(private firstName: string, private lastName: string) {}
+    abstract getSalary(): number; // abstract method
+    
+    // normal method
+    get fullName(): string {
         return `${this.firstName} ${this.lastName}`
     }
-    // overwrite
-    describe(): string {
-        return `This is ${this.firstName} ${this.lastName}`
+    
+    compensationStatement(): string {
+        return ` ${this.fullName} makes ${this.getSalary()} a month`
     }
 }
 
-// để kế thừa 1 class, chúng ta sử dụng keyword extends
+class FullTimeEmployee extends Employee99 {
+    constructor(firstName: string, lastName: string, private salary: number) {
+        super(firstName, lastName); // 
+    }
 
-class Employee1 extends Person3 {
-    constructor (
-        firstName: string,
-        lastName: string) {
-            super(firstName, lastName);
-        }
+    getSalary(): number {
+        return this.salary;
+    }
+ }
 
-    describe(): string {
-        return ` ${super.describe()} from Parent - I am learning English with my Friend `
+class Contractor extends Employee99 {
+    constructor (firstName: string, lastName: string, private rate: number) {
+        super(firstName, lastName)
+    }
+    getSalary(): number {
+        return this.rate;
     }
 }
 
-let employee = new Employee1("毎日ITを勉強して", "2時間ぐらい")
-
-console.log(employee.getFullName())
-console.log(employee.describe())
+const test1 = new FullTimeEmployee("Yushing","Fufun", 4000)
+console.log(">>> test 1: ", test1.getSalary())
 
 
 
-class Animal {
-    name: string;
-  
-    constructor(name: string) {
-      this.name = name;
-    }
-  
-    move(distanceInMeters: number = 0) {
-      console.log(`${this.name} moved ${distanceInMeters}m.`);
-    }
-  }
-  
-  class Snake extends Animal {
-    constructor(name: string) {
-      super(name);
-    }
-  
-    move(distanceInMeters = 5) {
-      console.log("Slithering...");
-      super.move(distanceInMeters);
-    }
-  }
-  
-  let sam = new Snake("Sammy the Python");
-  sam.move();
-  
-  console.log(sam)
+
