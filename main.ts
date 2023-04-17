@@ -1,16 +1,19 @@
-class Employe {
-    public empCode : string
-    empName : string
+class Person {
+    readonly name: string;
+    readonly age: number;
     
-    constructor(empCode: string, empName: string) {
-        this.empCode = empCode
-        this.empName = empName
+    constructor(name: string, age: number) {
+        this.name = name
+        this.age = age
+        
     }
 
+    greet() {
+        console.log(`Hi my name is ${this.name} and I am ${this.age} years old ` )
+    }
 }
 
-let emp = new Employe ("aaa", "bbb")
-emp.empCode = "毎日ITを勉強してる頑張りましょう"
-emp.empName = "頑張ってください"
+let person = new Person("Yshing",30);
+// person.name = "Huu Hung"  Không thể gán giá trị vì nó là read Only nên mình không thể thay đổi 
+console.log(person)
 
-console.log(emp)
