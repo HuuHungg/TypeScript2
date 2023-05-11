@@ -197,3 +197,5 @@ const resourceOne: Resource<string> = {
 
 
 console.log(resourceOne)
+
+console.log("毎日ITを勉強してる頑張りましょう、でも頭が痛いですがんばりましょう")
